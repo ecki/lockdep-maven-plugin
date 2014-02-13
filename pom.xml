@@ -58,7 +58,7 @@
         <version>3.2</version>
         <configuration>
           <goalPrefix>lockdep</goalPrefix>
-          <skipErrorNoDescriptorsFound>false</skipErrorNoDescriptorsFound>
+          <skipErrorNoDescriptorsFound>true</skipErrorNoDescriptorsFound>
         </configuration>
         <executions>
           <execution>

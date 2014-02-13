@@ -47,7 +47,6 @@ public class LockDependenciesMojo
         deps = project.getPluginArtifacts();
         for(Artifact a : deps)
         {
-            a.
             log.info("plugin artifact: " + a.getId() + " (" + a.getScope() +") from " +  a.getDownloadUrl() + " " + a.getFile());
         }
     }
