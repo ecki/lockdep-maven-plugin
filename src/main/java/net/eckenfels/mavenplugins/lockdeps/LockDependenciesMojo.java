@@ -11,6 +11,8 @@ package net.eckenfels.mavenplugins.lockdeps;
 import java.util.Set;
 
 import org.apache.maven.artifact.Artifact;
+import org.apache.maven.artifact.handler.ArtifactHandler;
+import org.apache.maven.artifact.repository.ArtifactRepository;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.logging.Log;
@@ -39,7 +41,8 @@ public class LockDependenciesMojo
         Set<Artifact> deps = project.getArtifacts();
         for(Artifact a : deps)
         {
-            log.info("artifact: " + a.getId() + " (" + a.getScope() +") from " +  a.getDownloadUrl() + " " + a.getFile());
+            ArtifactRepository rep = a.getRepository();
+            log.info("artifact: " + a.getId() + " (" + a.getScope() +") from " +  a.getDownloadUrl() + " " + a.getFile() + " repid=" + ((rep!=null)?rep.getId():null));
         }
 
         deps = project.getPluginArtifacts();

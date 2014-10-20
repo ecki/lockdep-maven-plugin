@@ -70,6 +70,8 @@ public class ProjectScanner
             if (file != null)
             {
                 checksums.put(id, calculateHash(file));
+            } else {
+                checksums.put(id,  "UNKNOWN");
             }
         }
 
@@ -83,6 +85,8 @@ public class ProjectScanner
             if (file != null)
             {
                 checksums.put(id, calculateHash(file));
+            } else {
+                checksums.put(id,  "UNKNOWN");
             }
         }
 
@@ -99,16 +103,26 @@ public class ProjectScanner
             {
                 digest.update(buf, 0, read);
             }
-            return bytesToHey(digest.digest());
+            return bytesToHex(digest.digest());
         } finally {
             digest.reset();
-            try { in.close(); } catch (Exception ignored) { }
+            silentClose(in);
         }
     }
 
-    private String bytesToHey(byte[] digest)
+    private void silentClose(InputStream in)
     {
-        return DatatypeConverter.printHexBinary(digest);
+        if (in != null)
+        {
+            try {
+                in.close();
+            } catch (Exception ignored) { /* ignored */ }
+        }
+    }
+
+    private String bytesToHex(byte[] bytes)
+    {
+        return DatatypeConverter.printHexBinary(bytes);
     }
 
 }
