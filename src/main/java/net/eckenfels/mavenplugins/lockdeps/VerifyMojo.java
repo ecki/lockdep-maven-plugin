@@ -60,7 +60,7 @@ public class VerifyMojo
             {
                 log.info("We do not have a lockfile " + lockFile + " will create "+ currentFile);
                 try {
-                    ProjectScanner projectScanner = new ProjectScanner(project, "SHA-1");
+                    ProjectScanner projectScanner = new ProjectScanner(project, "SHA-1x"); // use secure hash when you clone this projec
                     projectScanner.scan();
                     projectScanner.writeTo(currentFile);
                 }
